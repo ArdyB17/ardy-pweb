@@ -26,10 +26,10 @@ if (isset($_GET['Id_Jurusan'])) {
             <div class="card border-0 shadow-lg rounded-4 mb-4">
                 <div class="card-header bg-dark bg-gradient text-white p-4 rounded-top-4">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h4 class="mb-0 fw-bold fs-4">🗃️ DATA JURUSAN</h4>
+                        <h5 class="mb-0 fw-bold fs-4 "><i class="bi bi-tags-fill fs-4"></i> Data Jurusan</h5>
                         <a href="dashboard.php?page=tambah_jurusan"
                             class="btn btn-light btn-sm px-3 py-2 shadow-sm fw-semibold">
-                            <i class="bi bi-plus-lg me-2"></i>TAMBAH JURUSAN
+                            <i class="bi bi-plus-lg me-2"></i>Tambah Jurusan
                         </a>
                     </div>
                 </div>

@@ -12,33 +12,83 @@ if (isset($_GET['Id_Kegiatan'])) {
         echo "<script>location='dashboard.php?page=kegiatan';</script>";
     }
 }
+
+// Add search functionality
+$search_condition = "";
+if (isset($_GET['search']) && !empty($_GET['search'])) {
+    $search = mysqli_real_escape_string($koneksi, $_GET['search']);
+    $search_condition = "WHERE kegiatan.Jenis_Kegiatan LIKE '%$search%' 
+                        OR kegiatan.Angka_Kredit LIKE '%$search%'
+                        OR kategori.Kategori LIKE '%$search%'
+                        OR kategori.Sub_Kategori LIKE '%$search%'";
+}
+
+// Modified query with search condition
+$query = mysqli_query($koneksi, "SELECT * FROM kategori 
+                                INNER JOIN kegiatan ON kategori.Id_Kategori = kegiatan.Id_Kategori 
+                                $search_condition 
+                                ORDER BY kategori.Sub_Kategori");
 ?>
+
+<style>
+    <?php include '../css/style_kegiatan.css'; ?>
+</style>
 
 
 <div class="container-fluid py-4 px-4">
     <div class="row justify-content-center">
         <div class="col-12 col-xl-11 col-md-8">
 
-            <!-- Header Card -->
-            <div class="card border-0 shadow-sm rounded-4 mb-4">
-                <div class="card-header border-0 bg-gradient bg-dark text-white p-4 rounded-top-4">
-                    <div class="d-flex justify-content-between align-items-center">
+            <!-- Enhanced Header Card with Search -->
+            <div class="card border-0 shadow-lg rounded-4 mb-4">
+                <div class="card-header bg-dark bg-gradient text-white p-4 rounded-top-4">
+                    <div class="d-flex flex-column gap-3">
+                        <!-- Title and Add Button -->
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-folder2-open fs-4 me-2"></i>
+                                <h4 class="mb-0 fw-semibold">Data Kegiatan & Kategori</h4>
+                            </div>
 
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-folder2-open fs-4 me-2"></i>
-                            <h4 class="mb-0 fw-semibold">Data Kegiatan & Kategori</h4>
+                            <a href="dashboard.php?page=tambah_kegiatan"
+                                class="btn btn-light btn-sm px-3 py-2 d-flex align-items-center gap-2 hover-elevate">
+                                <i class="bi bi-plus-circle"></i>
+                                <span>Tambah Kategori</span>
+                            </a>
                         </div>
 
-                        <a href="dashboard.php?page=tambah_kegiatan"
-                            class="btn btn-light btn-sm px-3 py-2 d-flex align-items-center gap-2 hover-elevate">
-                            <i class="bi bi-plus-circle"></i>
-                            <span>Tambah Kategori</span>
-                        </a>
+                        <!-- Search Form -->
+                        <div class="search-wrapper">
+                            <form method="GET" action="">
+                                <input type="hidden" name="page" value="kegiatan">
+                                <div class="input-group search-container">
+                                    <input type="text"
+                                        class="form-control search-bar"
+                                        placeholder="Cari berdasarkan kegiatan, kategori, atau jumlah point..."
+                                        name="search"
+                                        value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>"
+                                        autocomplete="off">
+                                    <button class="btn search-button" type="submit">
+                                        <i class="bi bi-search search-icon"></i>
+                                        <span class="search-text">Cari</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
 
                     </div>
                 </div>
             </div>
 
+            <!-- No Results Message -->
+            <?php if (mysqli_num_rows($query) == 0) : ?>
+                <div class="no-results">
+                    <i class="bi bi-search"></i>
+                    <h5>Tidak ada hasil yang ditemukan</h5>
+                    <p>Coba gunakan kata kunci yang berbeda</p>
+                </div>
+            <?php endif; ?>
 
             <!-- Table Card -->
             <div class="card border-0 shadow-sm rounded-4">
@@ -87,8 +137,6 @@ if (isset($_GET['Id_Kegiatan'])) {
                             <tbody>
 
                                 <?php
-                                $query = mysqli_query($koneksi, "SELECT * FROM kategori INNER JOIN kegiatan ON kategori.Id_Kategori = kegiatan.Id_Kategori ORDER BY kategori.Sub_Kategori");
-
                                 $last_kategori_id = null;
                                 $no = 1;
 

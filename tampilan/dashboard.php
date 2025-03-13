@@ -7,13 +7,17 @@ if (!isset($_COOKIE['level_user'])) {
     exit;
 }
 
-// Page title handling
+// ====================================== //
+//  Page Title Configuration              //
+// ====================================== //
+
+
 $title = 'Home';  // Default title
 
 if (isset($_GET['page'])) {
     switch ($_GET['page']) {
 
-            // siswa section
+        // siswa section
         case 'siswa':
             $title = 'Data Siswa';
             break;
@@ -25,7 +29,7 @@ if (isset($_GET['page'])) {
             $title = 'Edit Data Siswa';
             break;
 
-            // jurusan section
+        // jurusan section
         case 'jurusan':
             $title = 'Data Jurusan';
             break;
@@ -36,33 +40,41 @@ if (isset($_GET['page'])) {
             $title = 'Edit Data Jurusan';
             break;
 
-            // kategori kegiatan section
+        // kategori kegiatan section
         case 'tambah_kegiatan':
             $title = 'Tambah Kategori Kegiatan';
             break;
-
         case 'kegiatan':
             $title = 'Data Kegiatan';
             break;
-
         case 'ubah_kegiatan':
             $title = 'Edit Data Kegiatan';
             break;
-
         case 'ubah_sub_kategori':
             $title = 'Edit Sub kategori';
             break;
 
-            // sertifikat section
+        // sertifikat section
         case 'sertifikat':
             $title = 'Sertifikat';
             break;
+        case 'cek_sertifikat':
+            $title = 'Cek Sertifikat';
+            break;
+        case 'upload_sertifikat':
+            $title = 'Upload Sertifikat';
+            break;
+        case 'cek_sertifikat_siswa':
+            $title = 'Cek Sertifikat Siswa';
+            break;
+        case 'sertifikat_siswa':
+            $title = 'Sertifikat Siswa';
+            break;
 
-            // operator section
+        // operator section
         case 'operator':
             $title = 'Operator';
             break;
-
         case 'tambah_operator':
             $title = 'Tambah Operator Baru';
             break;
@@ -101,6 +113,7 @@ if (isset($_GET['page'])) {
 
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
+
             <?php if ($_COOKIE['level_user'] == 'operator'): ?>
                 <!-- Brand - left position -->
                 <a class="navbar-brand d-flex align-items-center gap-2" href="dashboard.php">
@@ -121,44 +134,54 @@ if (isset($_GET['page'])) {
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <!-- center and spacing ? -->
                 <ul class="navbar-nav mx-auto">
+
                     <?php if ($_COOKIE['level_user'] == 'operator'): ?>
                         <!-- Menu items for operator -->
                         <li class="nav-item">
                             <a class="nav-link <?php echo (isset($_GET['page']) && $_GET['page'] === 'siswa') ? 'active' : ''; ?>"
                                 href="dashboard.php?page=siswa">
-                                <i class="bi bi-people me-1"></i>Siswa
+                                <i class="bi bi-mortarboard-fill me-1"></i>Siswa
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link <?php echo (isset($_GET['page']) && $_GET['page'] === 'jurusan') ? 'active' : ''; ?>"
                                 href="dashboard.php?page=jurusan">
-                                <i class="bi bi-diagram-3 me-1"></i>Jurusan
+                                <i class="bi bi-building-fill me-1"></i>Jurusan
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link <?php echo (isset($_GET['page']) && $_GET['page'] === 'kegiatan') ? 'active' : ''; ?>"
                                 href="dashboard.php?page=kegiatan">
-                                <i class="bi bi-calendar-event me-1"></i>Kategori
+                                <i class="bi bi-clipboard2-data-fill me-1"></i>Kategori
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link <?php echo (isset($_GET['page']) && $_GET['page'] === 'sertifikat') ? 'active' : ''; ?>"
                                 href="dashboard.php?page=sertifikat">
-                                <i class="bi bi-award me-1"></i>Sertifikat
+                                <i class="bi bi-file-earmark-check-fill me-1"></i>Sertifikat
                             </a>
                         </li>
 
                     <?php else: ?>
-                        <!-- Only sertifikat menu for regular users -->
+                        <!-- Nav for siswaaa  -->
+                        <li class="nav-item">
+                            <a class="nav-link <?php echo (isset($_GET['page']) && $_GET['page'] === 'sertifikat_siswa') ? 'active' : ''; ?>"
+                                href="dashboard.php?page=sertifikat_siswa">
+                                <i class="bi bi-file-earmark-check-fill me-1"></i>Sertifikat Saya
+                            </a>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link <?php echo (isset($_GET['page']) && $_GET['page'] === 'upload_sertifikat') ? 'active' : ''; ?>"
                                 href="dashboard.php?page=upload_sertifikat">
-                                <i class="bi bi-award me-1"></i>Upload Sertifikat
+                                <i class="bi bi-file-earmark-arrow-up-fill"></i>Upload Sertifikat
                             </a>
                         </li>
+
+
                     <?php endif; ?>
                 </ul>
 
@@ -211,17 +234,18 @@ if (isset($_GET['page'])) {
     </nav>
 
     <?php
-
+    // ====================================== //
+    //  Page cases for dashboard              //
+    // ====================================== //
     if (isset($_GET['page'])) {
         switch ($_GET['page']) {
 
-                // the landing page
+            // the landing page
+            // case 'dashboard':
+            //     include 'dashboard.php';
+            //     break;
 
-                // case 'dashboard':
-                //     include 'dashboard.php';
-                //     break;
-
-                // siswa section
+            // siswa section
             case 'siswa':
                 include 'siswa.php';
                 break;
@@ -233,7 +257,7 @@ if (isset($_GET['page'])) {
                 break;
 
 
-                // jurusan section
+            // jurusan section
             case 'jurusan':
                 include 'jurusan.php';
                 break;
@@ -244,7 +268,7 @@ if (isset($_GET['page'])) {
                 include '../ubah/ubah_jurusan.php';
                 break;
 
-                // kategori kegiatan section
+            // kategori kegiatan section
             case 'kegiatan':
                 include 'kegiatan.php';
                 break;
@@ -261,7 +285,7 @@ if (isset($_GET['page'])) {
                 include '../ubah/ubah_sub_kategori.php';
                 break;
 
-                // operator section
+            // operator section
             case 'operator':
                 include 'operator.php';
                 break;
@@ -274,13 +298,25 @@ if (isset($_GET['page'])) {
                 include '../ubah/ganti_password.php';
                 break;
 
-                // sertificate section
+            // sertificate section
             case 'sertifikat':
                 include 'sertifikat.php';
                 break;
 
             case 'upload_sertifikat':
                 include '../tambah/upload_sertifikat.php';
+                break;
+
+            case 'cek_sertifikat':
+                include 'cek_sertifikat.php';
+                break;
+
+            case 'sertifikat_siswa':
+                include 'sertifikat_siswa.php';
+                break;
+
+            case 'cek_sertifikat_siswa':
+                include 'cek_sertifikat_siswa.php';
                 break;
 
             default:
@@ -355,7 +391,7 @@ if (isset($_GET['page'])) {
                 <div class="container mb-1">
 
                     <div class="stats-grid">
-                        <!-- Students Stats -->
+                        <!-- Murid Stats -->
                         <div class="stats-card shadow-sm">
                             <div class="card-body d-flex align-items-center">
                                 <div class="stats-icon-box stats-bg-primary me-3">
@@ -363,6 +399,10 @@ if (isset($_GET['page'])) {
                                 </div>
                                 <div class="stats-content">
                                     <?php
+                                    // Mengambil total jumlah siswa dari database
+                                    // mysqli_query() - Menjalankan query SQL untuk menghitung total siswa
+                                    // mysqli_fetch_array() - Mengambil hasil query dalam bentuk array
+                                    // [0] - Mengambil nilai pertama dari array hasil (total count)
                                     $total_siswa = mysqli_fetch_array(mysqli_query($koneksi, "SELECT COUNT(*) as total FROM siswa"))[0];
                                     ?>
                                     <h3><?php echo $total_siswa; ?></h3>
@@ -371,7 +411,7 @@ if (isset($_GET['page'])) {
                             </div>
                         </div>
 
-                        <!-- Departments Stats -->
+                        <!-- Jurusan Stats -->
                         <div class="stats-card shadow-sm">
                             <div class="card-body d-flex align-items-center">
                                 <div class="stats-icon-box stats-bg-success me-3">
@@ -379,6 +419,9 @@ if (isset($_GET['page'])) {
                                 </div>
                                 <div class="stats-content">
                                     <?php
+                                    // Mengambil total jumlah jurusan dari database
+                                    // COUNT(*) - Menghitung semua record dalam tabel jurusan
+                                    // mysqli_fetch_array()[0] - Mengambil nilai count dari hasil query
                                     $total_jurusan = mysqli_fetch_array(mysqli_query($koneksi, "SELECT COUNT(*) as total FROM jurusan"))[0];
                                     ?>
                                     <h3><?php echo $total_jurusan; ?></h3>
@@ -387,7 +430,7 @@ if (isset($_GET['page'])) {
                             </div>
                         </div>
 
-                        <!-- Activities Stats -->
+                        <!-- Kegiatan Stats -->
                         <div class="stats-card shadow-sm">
                             <div class="card-body d-flex align-items-center">
                                 <div class="stats-icon-box stats-bg-warning me-3">
@@ -395,6 +438,9 @@ if (isset($_GET['page'])) {
                                 </div>
                                 <div class="stats-content">
                                     <?php
+                                    // Mengambil total jumlah kegiatan dari database
+                                    // Query menghitung seluruh record di tabel kegiatan
+                                    // mysqli_fetch_array mengkonversi hasil query menjadi array
                                     $total_kegiatan = mysqli_fetch_array(mysqli_query($koneksi, "SELECT COUNT(*) as total FROM kegiatan"))[0];
                                     ?>
                                     <h3><?php echo $total_kegiatan; ?></h3>
@@ -411,6 +457,10 @@ if (isset($_GET['page'])) {
                                 </div>
                                 <div class="stats-content">
                                     <?php
+                                    // Mengambil total jumlah sertifikat dari database
+                                    // COUNT(*) menghitung semua baris dalam tabel sertifikat
+                                    // mysqli_query menjalankan query SQL ke database
+                                    // mysqli_fetch_array mengambil hasil dalam bentuk array
                                     $total_sertifikat = mysqli_fetch_array(mysqli_query($koneksi, "SELECT COUNT(*) as total FROM sertifikat"))[0];
                                     ?>
                                     <h3><?php echo $total_sertifikat; ?></h3>
@@ -420,24 +470,7 @@ if (isset($_GET['page'])) {
                         </div>
                     </div>
 
-
-                    <!-- /*=============================================================================
-                    * ANALYTICS CHARTS SECTION
-                    * Visual representation of system data using Chart.js
-                    *============================================================================*/ -->
-
                     <div class="charts-grid">
-                        <!-- Certificate Statistics Chart -->
-                        <!-- <div class="chart-card">
-                            <div class="chart-header">
-                                <h5>Statistik Sertifikat</h5>
-                            </div>
-                            <div class="chart-body">
-                                <canvas id="certificateStats"></canvas>
-                            </div>
-                        </div> -->
-
-                        <!-- Activity Statistics Chart -->
                         <div class="chart-card">
                             <div class="chart-header">
                                 <h5>Statistik Kategori Kegiatan</h5>
@@ -447,7 +480,6 @@ if (isset($_GET['page'])) {
                             </div>
                         </div>
 
-                        <!-- Certificate Status Distribution Chart -->
                         <div class="chart-card">
                             <div class="chart-header">
                                 <h5>Status Sertifikat</h5>
@@ -465,7 +497,6 @@ if (isset($_GET['page'])) {
                 * CHARTS INITIALIZATION
                 * JavaScript for initializing and configuring Chart.js
                 *============================================================================*/ -->
-
                 <script>
                     // Certificate Stats Chart
                     // const certStats = document.getElementById('certificateStats');
@@ -799,14 +830,14 @@ if (isset($_GET['page'])) {
                                 <?php
                                 // Fetch student data with credit points
                                 $nis = $_COOKIE['NIS'];
-                                $query = mysqli_query($koneksi, "SELECT s.*, j.Jurusan, 
-                                                               (SELECT COALESCE(SUM(k.Angka_Kredit), 0)
-                                                                FROM sertifikat srt 
-                                                                JOIN kegiatan k ON srt.Id_Kegiatan = k.Id_Kegiatan 
-                                                                WHERE srt.NIS = s.NIS AND srt.Status = 'Valid') as total_kredit
-                                                               FROM siswa s 
-                                                               INNER JOIN jurusan j ON s.Id_Jurusan = j.Id_Jurusan 
-                                                               WHERE s.NIS = '$nis'");
+                                $query = mysqli_query($koneksi, "SELECT s.*, j.Jurusan,
+                                    (SELECT COALESCE(SUM(k.Angka_Kredit), 0)
+                                     FROM sertifikat srt 
+                                     INNER JOIN kegiatan k ON srt.Id_Kegiatan = k.Id_Kegiatan 
+                                     WHERE srt.NIS = s.NIS AND srt.Status = 'Valid') as total_kredit
+                                    FROM siswa s 
+                                    INNER JOIN jurusan j ON s.Id_Jurusan = j.Id_Jurusan 
+                                    WHERE s.NIS = '$nis'");
                                 $siswa = mysqli_fetch_assoc($query);
                                 ?>
 
@@ -851,7 +882,7 @@ if (isset($_GET['page'])) {
                                                 <div class="info-label"><i class="bi bi-star me-2"></i>Total Kredit Point</div>
                                                 <div class="credit-display">
                                                     <span class="credit-number"><?php echo $siswa['total_kredit']; ?></span>
-                                                    <span class="credit-total"> poin</span>
+                                                    <span class="credit-total"> points</span>
                                                 </div>
 
                                             </div>
@@ -867,18 +898,46 @@ if (isset($_GET['page'])) {
                     <div class="row justify-content-center g-4 mb-4">
                         <?php
                         // Fetch certificate statistics
-                        $valid_certs = mysqli_num_rows(mysqli_query($koneksi, "SELECT * FROM sertifikat WHERE NIS='$nis' AND Status='Valid'"));
-                        $invalid_certs = mysqli_num_rows(mysqli_query($koneksi, "SELECT * FROM sertifikat WHERE NIS='$nis' AND Status='Tidak Valid'"));
-                        $pending_certs = mysqli_num_rows(mysqli_query($koneksi, "SELECT * FROM sertifikat WHERE NIS='$nis' AND Status='Menunggu'"));
 
+                        // Get total certificates uploaded by student
+                        $total_certs = mysqli_num_rows(mysqli_query(
+                            $koneksi,
+                            "SELECT * FROM sertifikat WHERE NIS='$nis'"
+                        ));
+
+                        // Get valid certificates count
+                        $valid_certs = mysqli_num_rows(mysqli_query(
+                            $koneksi,
+                            "SELECT * FROM sertifikat WHERE NIS='$nis' AND Status='Valid'"
+                        ));
+
+                        // Get pending certificates count 
+                        $pending_certs = mysqli_num_rows(mysqli_query(
+                            $koneksi,
+                            "SELECT * FROM sertifikat WHERE NIS='$nis' AND Status='Menunggu Validasi'"
+                        ));
+
+                        // Get invalid certificates count
+                        $invalid_certs = mysqli_num_rows(mysqli_query(
+                            $koneksi,
+                            "SELECT * FROM sertifikat WHERE NIS='$nis' AND Status='Tidak Valid'"
+                        ));
+
+                        // Array of statistics cards configuration
                         $stat_cards = [
+                            // Total certificates card
+                            ['title' => 'Total Sertifikat', 'count' => $total_certs, 'icon' => 'file-earmark-text-fill', 'color' => 'primary'],
+                            // Valid certificates card
                             ['title' => 'Sertifikat Valid', 'count' => $valid_certs, 'icon' => 'check-circle-fill', 'color' => 'success'],
+                            // Pending certificates card
                             ['title' => 'Menunggu Validasi', 'count' => $pending_certs, 'icon' => 'clock-fill', 'color' => 'warning'],
+                            // Invalid certificates card
                             ['title' => 'Tidak Valid', 'count' => $invalid_certs, 'icon' => 'x-circle-fill', 'color' => 'danger']
                         ];
 
+                        // Loop through and display all statistics cards
                         foreach ($stat_cards as $card) : ?>
-                            <div class="col-12 col-md-6 col-lg-4">
+                            <div class="col-12 col-md-6 col-lg-3">
                                 <div class="card border-0 shadow-sm h-100">
                                     <div class="card-body p-4">
                                         <div class="d-flex align-items-center mb-3">
@@ -899,7 +958,7 @@ if (isset($_GET['page'])) {
                     <!-- Action Button -->
                     <div class="text-center">
                         <a href="dashboard.php?page=upload_sertifikat" class="btn btn-primary btn-lg">
-                            <i class="bi bi-upload me-2"></i>Upload Sertifikat Baru
+                            <i class="bi bi-file-earmark-arrow-up-fill"></i> Upload Sertifikat Baru
                         </a>
                     </div>
                 </div>
@@ -923,13 +982,13 @@ if (isset($_GET['page'])) {
                     <div class="footer-divider mb-2"></div>
                     <p class="mb-0" style="font-size: 0.75rem;">
                         <span class="copyright-text">
-                            &copy; <?php echo date('Y'); ?> SKKPD Project
+                            &copy; <?php echo date('Y'); ?> Project SKKPd
                         </span>
                         <span class="mx-1">•</span>
                         <span class="credit-text">
                             Dikembangkan oleh
-                            <a href="https://github.com/ArdyB17/skkpd_ardy" target="_blank" rel="noopener noreferrer" class="developer-link">Ardy Styles</a>
-                            dengan <span class="heart">♋</span>
+                            <a href="https://github.com/ArdyB17/skkpd_ardy" target="_blank" rel="noopener noreferrer" class="developer-link">Ardy Berata</a>
+                            dengan <span class="heart">💓</span>
                         </span>
                     </p>
                 </div>

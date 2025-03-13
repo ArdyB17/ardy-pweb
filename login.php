@@ -21,6 +21,10 @@ if (isset($_POST['submit_login'])) {
     // Password Hashing Generation - Comment this when not generating hash
     // echo $enkrip = password_hash($pass, PASSWORD_DEFAULT);
 
+    /*
+ Password Hashing Verification - Comment this when not verifying hash
+    */
+
     // Login Authentication Logic
     // First checks if user is an operator
     if (mysqli_num_rows($cek_operator) > 0) {
@@ -36,12 +40,12 @@ if (isset($_POST['submit_login'])) {
             setcookie('level_user', 'operator', time() + (60 * 60 * 24 * 7), '/');
 
             // Redirect to dashboard on successful login
-            echo "<script>alert('Login Berhasil');window.location.href='tampilan/dashboard.php?page=siswa'</script>";
+            echo "<script>alert('Login Berhasil');window.location.href='tampilan/dashboard.php?'</script>";
         } else {
             // Password doesn't match
             echo "<script>alert('Password salah!');</script>";
         }
-    } 
+    }
     // Check if user is a student
     elseif (mysqli_num_rows($cek_siswa) > 0) {
         // Verify password for student
@@ -56,7 +60,7 @@ if (isset($_POST['submit_login'])) {
             setcookie('Nama_Lengkap', $nama_siswa['Nama_Siswa'], time() + (60 * 60 * 24 * 7), '/');
 
             // Redirect to dashboard on successful login
-            echo "<script>alert('Login Berhasil');window.location.href='tampilan/dashboard.php?page=siswa'</script>";
+            echo "<script>alert('Login Berhasil');window.location.href='tampilan/dashboard.php'</script>";
         } else {
             // Password doesn't match
             echo "<script>alert('Gagal login, Password salah!');window.location.href='login.php'</script>";
@@ -68,125 +72,222 @@ if (isset($_POST['submit_login'])) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login - SKKPD</title>
+
+    <!-- External CSS Dependencies -->
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
+        /* Base Styles - Sets the foundation for the entire page */
         body {
+            font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .card {
-            width: 400px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
+        /* Login Container Styles */
+        .login-container {
+            width: 100%;
+            max-width: 450px;
+            /* Reduced width since we removed image section */
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header Styles */
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
         }
 
         .login-title {
             color: #2C3E50;
-            font-weight: bold;
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .login-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 4px;
+            background: linear-gradient(135deg, #3498DB, #9b59b6);
+            border-radius: 2px;
+            margin: 0 auto;
+        }
+
+        /* Form Field Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
         }
 
         .form-label {
-            font-weight: 600;
+            font-weight: 500;
             color: #34495E;
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+            display: block;
         }
 
-        .custom-input {
-            border-radius: 10px;
-            padding-left: 15px;
-        }
-
-        .password-input {
-            border-radius: 10px 0 0 10px;
-        }
-
-        .toggle-password {
-            border-radius: 0 10px 10px 0;
-            cursor: pointer;
-        }
-
-        .login-button {
-            background: linear-gradient(135deg, #3498DB, #2980B9);
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
         }
 
         .form-control:focus {
             border-color: #3498DB;
-            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.15);
+            outline: none;
+        }
+
+        /* Password Input Group Styles */
+        .password-group {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #666;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        /* Login Button Styles */
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #3498DB, #2980B9);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 480px) {
+            .login-container {
+                padding: 1.5rem;
+            }
+
+            .login-title {
+                font-size: 1.75rem;
+            }
         }
     </style>
 </head>
 
 <body>
-
-    <div class="container min-vh-100 d-flex justify-content-center align-items-center">
-        <div class="card shadow-lg border-0">
-            <div class="card-body p-5">
-
-                <h3 class="text-center mb-4 login-title">Login</h3>
-
-                <form method="POST" action="">
-
-                    <div class="mb-4 position-relative">
-
-                        <label for="username" class="form-label">
-                            <i class="fas fa-user-circle me-2"></i>Username
-                        </label>
-
-                        <input type="text" class="form-control form-control-lg custom-input" autocomplete="off" id="username" name="username">
-
-                    </div>
-
-                    <div class="mb-4 position-relative">
-
-                        <label for="password" class="form-label">
-                            <i class="fas fa-lock me-2"></i>Password
-                        </label>
-
-                        <div class="input-group">
-
-                            <input type="password" class="form-control form-control-lg password-input" id="password" name="password" autocomplete="off" required>
-                            <span class="input-group-text toggle-password" onclick="togglePassword()">
-                                <i class="fas fa-eye" id="toggleIcon"></i>
-                            </span>
-
-                        </div>
-                    </div>
-
-                    <button type="submit" name="submit_login" class="btn btn-primary w-100 py-3 login-button">
-                        <i class="fas fa-sign-in-alt me-2"></i>Login
-                    </button>
-                </form>
-            </div>
+    <!-- Main Container -->
+    <div class="login-container">
+        <!-- Login Header -->
+        <div class="login-header">
+            <h3 class="login-title">Selamat Datang 👋</h3>
+            <p class="text-muted">Silahkan login ke akun anda</p>
         </div>
+
+        <!-- Login Form -->
+        <form method="POST" action="">
+            <!-- Username Field -->
+            <div class="form-group">
+                <label for="username" class="form-label">
+                    <i class="fas fa-user-circle me-2"></i>Username
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    name="username"
+                    autocomplete="off"
+                    required
+                    placeholder="Enter your username">
+            </div>
+
+            <!-- Password Field -->
+            <div class="form-group">
+                <label for="password" class="form-label">
+                    <i class="fas fa-lock me-2"></i>Password
+                </label>
+                <div class="password-group">
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        name="password"
+                        autocomplete="off"
+                        required
+                        placeholder="Enter your password">
+                    <button type="button" class="toggle-password" onclick="togglePassword()">
+                        <i class="fas fa-eye" id="toggleIcon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" name="submit_login" class="login-button">
+                <i class="fas fa-sign-in-alt me-2"></i>Login
+            </button>
+        </form>
     </div>
 
+    <!-- Password Toggle Functionality -->
     <script>
         function togglePassword() {
             const passwordInput = document.getElementById('password');
             const toggleIcon = document.getElementById('toggleIcon');
 
+            // Toggle password visibility
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
                 toggleIcon.classList.remove('fa-eye');
                 toggleIcon.classList.add('fa-eye-slash');
             } else {
                 passwordInput.type = 'password';
-                toggleIcon.classList.remove('fa-eye-lash');
+                toggleIcon.classList.remove('fa-eye-slash');
                 toggleIcon.classList.add('fa-eye');
             }
         }
     </script>
-
 </body>
 
 </html>

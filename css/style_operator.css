@@ -1,0 +1,384 @@
+/* Updated and new styles */
+.operator-avatar-sm {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+}
+
+.operator-avatar-lg {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  font-size: 2rem;
+}
+
+/* Responsive height for operators list */
+@media (min-width: 992px) {
+  .table-responsive {
+    max-height: calc(100vh - 300px);
+    overflow-y: auto;
+  }
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+}
+
+/* Improved form control styles */
+.form-control {
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+/* Password toggle button styling */
+.input-group .btn-outline-secondary {
+  border-color: #dee2e6;
+  color: #6c757d;
+  transition: all 0.2s ease;
+}
+
+.input-group .btn-outline-secondary:hover {
+  background-color: #f8f9fa;
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+/* Operator List Enhancements */
+.operators-table-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  height: auto;
+  /* max-height: calc(100vh - 250px); */
+}
+
+.operator-list {
+  /* max-height: calc(100vh - 400px); */
+  /* Adjust based on your needs */
+  overflow-y: visible;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  height: auto;
+  padding: 0.5rem;
+}
+
+.operator-list::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
+}
+
+/* Show scrollbar only when content overflows */
+.operator-list:hover {
+  scrollbar-width: thin;
+  -ms-overflow-style: auto;
+}
+
+.operator-list:hover::-webkit-scrollbar {
+  display: block;
+  width: 6px;
+}
+
+.operator-list::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.operator-list::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.operator-list::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Table Row Enhancements */
+.table tbody tr {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.table tbody tr:hover {
+  transform: translateX(4px);
+  background-color: rgba(37, 99, 235, 0.05) !important;
+}
+
+.table-primary {
+  position: relative;
+}
+
+.table-primary::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #2563eb;
+  border-radius: 0 2px 2px 0;
+}
+
+/* Avatar and Info Styling */
+.operator-avatar-sm {
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  background: rgba(37, 99, 235, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: #2563eb;
+  transition: all 0.2s ease;
+}
+
+tr:hover .operator-avatar-sm {
+  transform: scale(1.1);
+  background: rgba(37, 99, 235, 0.15);
+}
+
+.operator-info {
+  line-height: 1.4;
+}
+
+.operator-name {
+  font-size: 1rem;
+  color: #1e293b;
+}
+
+.operator-username {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .operator-list {
+    max-height: calc(100vh - 450px);
+  }
+}
+
+@media (max-width: 992px) {
+  .operator-list {
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .operator-avatar-sm {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+
+  .operator-name {
+    font-size: 0.95rem;
+  }
+
+  .operator-username {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .operators-table-wrapper {
+    margin: 0 -0.5rem;
+  }
+
+  .table td {
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .operator-name {
+    color: #e2e8f0;
+  }
+
+  .operator-username {
+    color: #94a3b8;
+  }
+
+  .table-primary {
+    background-color: rgba(37, 99, 235, 0.15) !important;
+  }
+}
+
+/* Modern Operators List Styling */
+.operators-table-wrapper {
+  position: relative;
+  height: calc(100vh - 250px);
+  overflow: hidden;
+}
+
+.operator-list {
+  height: 100%;
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+
+/* Hide default scrollbar */
+.operator-list {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.operator-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* Show custom scrollbar on hover */
+.operator-list:hover {
+  scrollbar-width: thin;
+  -ms-overflow-style: auto;
+}
+
+.operator-list:hover::-webkit-scrollbar {
+  display: block;
+  width: 4px;
+}
+
+.operator-list:hover::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.operator-list:hover::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 2px;
+}
+
+/* Operator Item Styling */
+.operator-item {
+  padding: 1rem;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  background: white;
+}
+
+.operator-item:hover {
+  transform: translateX(8px);
+  background: rgba(37, 99, 235, 0.04);
+}
+
+.operator-item.active {
+  background: rgba(37, 99, 235, 0.08);
+  position: relative;
+}
+
+.operator-item.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 60%;
+  width: 4px;
+  background: #2563eb;
+  border-radius: 0 2px 2px 0;
+}
+
+/* Avatar Styling */
+.operator-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  background: rgba(37, 99, 235, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avatar-content {
+  color: #2563eb;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.operator-item:hover .operator-avatar {
+  transform: scale(1.05);
+  background: rgba(37, 99, 235, 0.15);
+}
+
+/* Info Styling */
+.operator-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.operator-name {
+  color: #1e293b;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.operator-username {
+  font-size: 0.8rem;
+  color: #64748b;
+  display: block;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .operators-table-wrapper {
+    height: calc(100vh - 350px);
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .operator-item {
+    padding: 0.75rem;
+  }
+
+  .operator-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .avatar-content {
+    font-size: 0.9rem;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .operator-item {
+    background: rgba(30, 41, 59, 0.5);
+  }
+
+  .operator-name {
+    color: #e2e8f0;
+  }
+
+  .operator-username {
+    color: #94a3b8;
+  }
+
+  .operator-item:hover {
+    background: rgba(37, 99, 235, 0.15);
+  }
+
+  .operator-item.active {
+    background: rgba(37, 99, 235, 0.2);
+  }
+}

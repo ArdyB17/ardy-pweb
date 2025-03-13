@@ -9,6 +9,7 @@ if (isset($_POST['tombol_tambah'])) {
     } else {
         $noUrut = 1;
     }
+
     $Id = 'J' . $noUrut;
     $jurusan = $_POST['Jurusan'];
 

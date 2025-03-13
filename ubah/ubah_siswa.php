@@ -21,6 +21,7 @@ if (isset($_POST['tombol_update'])) {
     $password = htmlspecialchars($_POST['password']);
     $konfirmasi_password = htmlspecialchars($_POST['konfirmasi_password']);
 
+    // Check if the password is empty
     if ($password == NULL) {
         if ($password !== $konfirmasi_password) {
             echo "<script>alert('Password dengan konfirmasi tidak sama!');window.location.href='dashboard.php?page=ubah_siswa&NIS=$nis';
@@ -88,7 +89,7 @@ if (isset($_POST['tombol_update'])) {
             <div class="card border-0 shadow-lg">
                 <div class="card-header bg-dark bg-gradient text-white p-3">
                     <h5 class="mb-0">
-                        <i class="bi bi-pencil-square me-2"></i>Update Data Siswa
+                        <i class="bi bi-pencil-square me-2"></i>Ubah Data Siswa
                     </h5>
                 </div>
 
@@ -208,7 +209,7 @@ if (isset($_POST['tombol_update'])) {
                                 <i class="bi bi-arrow-left me-2"></i>Kembali
                             </a>
                             <button type="submit" name="tombol_update" class="btn btn-primary">
-                                <i class="bi bi-check-lg me-2"></i>Update
+                                <i class="bi bi-check-lg me-2"></i>Simpan
                             </button>
 
                         </div>

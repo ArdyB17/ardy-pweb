@@ -26,7 +26,7 @@ if (isset($_POST['submit_operator'])) {
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card border-0 shadow-lg">
-                <div class="card-header bg-gradient bg-primary text-white p-4">
+                <div class="card-header text-white p-3" style="background: linear-gradient(45deg, #1a237e, #283593);">
                     <div class="d-flex align-items-center">
                         <i class="bi bi-person-plus-fill fs-4 me-2"></i>
                         <h5 class="mb-0">Tambah Operator Baru</h5>
@@ -87,6 +87,7 @@ if (isset($_POST['submit_operator'])) {
                                 <input type="password"
                                     class="form-control"
                                     name="konfirmasi_pass"
+                                    id="confirm_password"
                                     placeholder="Konfirmasi Password"
                                     required>
                                 <button class="btn btn-outline-secondary"
@@ -109,7 +110,7 @@ if (isset($_POST['submit_operator'])) {
                             <button type="submit"
                                 name="submit_operator"
                                 class="btn btn-primary">
-                                <i class="bi bi-person-plus me-2"></i>Tambah Operator
+                                <i class="bi bi-check-lg me-2"></i>Simpan
                             </button>
                         </div>
                     </form>

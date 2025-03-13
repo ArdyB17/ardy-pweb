@@ -29,7 +29,7 @@ if (isset($_POST['tombol_tambah'])) {
 ?>
 
 <style>
-    <?php include '../css/style_kegiatan.css'; ?>
+    <?php include '../css/style_form_siswa.css' ?>
 </style>
 
 <div class="container py-4">
@@ -52,6 +52,7 @@ if (isset($_POST['tombol_tambah'])) {
                 <!-- Card Body -->
                 <div class="card-body p-4">
                     <!-- Info Alert -->
+
                     <!-- <div class="alert alert-info mb-4" role="alert">
                         <i class="bi bi-info-circle me-2"></i>
                         Pilih kategori terlebih dahulu untuk menampilkan sub kategori
@@ -140,6 +141,7 @@ if (isset($_POST['tombol_tambah'])) {
                                 <div class="col-md-8">
                                     <div class="d-flex align-items-center gap-3">
                                         <div class="form-floating flex-grow-1">
+
                                             <!-- Hidden inputs -->
                                             <input type="hidden" name="kategori" value="<?= $kategori ?>">
                                             <input type="hidden" name="sub_kategori" value="<?= $sub_kategori ?>">
@@ -192,7 +194,7 @@ if (isset($_POST['tombol_tambah'])) {
                                                 id="kreditInput"
                                                 name="kredit"
                                                 min="1"
-                                                max="100"
+                                                max="15"
                                                 placeholder="Masukkan jumlah kredit"
                                                 required>
                                             <label for="kreditInput">Kredit</label>
@@ -259,7 +261,7 @@ if (isset($_POST['tombol_tambah'])) {
                         </div> -->
 
                     </form>
-                    
+
                 </div>
             </div>
         </div>

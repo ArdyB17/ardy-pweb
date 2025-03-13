@@ -95,10 +95,10 @@ if (isset($_POST['submit'])) {
 
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary" name="submit" value="kirim" id="">
-                                <i class="bi bi-save me-2"></i>Nyimpen Data
+                                <i class="bi bi-check-lg me-2"></i>Simpan
                             </button>
                             <a href="dashboard.php?page=siswa" class="btn btn-secondary">
-                                <i class="bi bi-arrow-left me-2"></i>gak jadi
+                                <i class="bi bi-arrow-left me-2"></i>Kembali
                             </a>
                         </div>
 

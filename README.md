@@ -22,17 +22,20 @@ SKKPD adalah sistem manajemen penilaian berbasis poin untuk kegiatan peserta did
 ## Panduan Instalasi
 
 1. Clone repositori ini:
+
 ```bash
 git clone https://github.com/yourusername/skkpd.git
 ```
 
 2. Import database:
+
 ```bash
 mysql -u username -p nama_database < database/skkpd.sql
 ```
 
 3. Konfigurasi database:
-Edit file `koneksi.php`:
+   Edit file `koneksi.php`:
+
 ```php
 $koneksi = mysqli_connect("localhost", "username", "password", "nama_database");
 ```
@@ -55,18 +58,21 @@ skkpd/
 ## Modul Sistem
 
 ### 1. Manajemen Siswa
+
 - Pendaftaran siswa baru
 - Update data siswa
 - Manajemen kelas & jurusan
 - Monitoring poin kegiatan
 
 ### 2. Manajemen Kegiatan
+
 - Kategori & sub-kategori kegiatan
 - Alokasi poin per kegiatan
 - Upload & validasi sertifikat
 - Status validasi sertifikat
 
 ### 3. Manajemen User
+
 - Multi-level user (Operator & Siswa)
 - Manajemen akun operator
 - Ganti password
@@ -75,12 +81,14 @@ skkpd/
 ## Penggunaan
 
 ### Login Operator
+
 - Username: [username operator]
 - Akses ke semua fitur manajemen
 - Validasi sertifikat
 - Pengelolaan master data
 
 ### Login Siswa
+
 - Login menggunakan NIS
 - Upload sertifikat kegiatan
 - Monitoring poin

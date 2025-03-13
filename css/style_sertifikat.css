@@ -96,6 +96,9 @@
     justify-content: center;
     font-weight: 600;
     color: #64748b;
+    min-width: 45px;
+    height: 45px;
+    margin-top: 0.2rem;
 }
 
 .certificate-meta {
@@ -193,6 +196,49 @@
 .student-avatar {
     font-size: 1.25rem !important;
     font-weight: 700;
+}
+
+/* Enhanced Student Info Styling */
+.student-details {
+    flex: 1;
+}
+
+.student-details p {
+    line-height: 1.4;
+}
+
+.student-details .small {
+    font-size: 0.875rem;
+}
+
+.student-details i {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.student-details .badge {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.75rem;
+}
+
+.fs-xs {
+    font-size: 0.75rem !important;
+}
+
+.contact-link {
+    color: #64748b;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.contact-link:hover {
+    color: #25D366;  /* WhatsApp green */
+}
+
+.contact-link i {
+    font-size: 1.1rem;
 }
 
 /* Responsive typography adjustments */
@@ -329,5 +375,160 @@
     .preview-section {
         padding: 1rem;
     }
+}
+
+/* Enhanced Nav Tabs Styling */
+.nav-tabs-wrapper {
+    position: relative;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.nav-tabs-custom {
+    display: flex;
+    min-width: min-content;
+    margin: 0;
+    padding: 0.5rem;
+    gap: 0.5rem;
+}
+
+.nav-tabs-custom .nav-link {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    min-width: auto;
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+/* Ensure icon and text stay visible */
+.nav-tabs-custom .nav-link i {
+    margin-right: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.nav-tabs-custom .nav-link .tab-text {
+    display: inline-block !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* Document Preview Styling */
+.preview-section {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.pdf-preview {
+    max-width: 150px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.pdf-preview:hover {
+    transform: scale(1.05);
+}
+
+.document-icon {
+    font-size: 3rem;
+    color: #dc2626;
+    margin-bottom: 1rem;
+}
+
+/* Scrollbar Styling for Nav Tabs */
+.nav-tabs-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.nav-tabs-wrapper::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+}
+
+.nav-tabs-wrapper::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+/* Responsive Design Improvements */
+@media (max-width: 768px) {
+    .nav-tabs-custom .nav-link {
+        padding: 0.625rem 1rem;
+    }
+
+    .nav-tabs-custom .nav-link i {
+        font-size: 1rem;
+    }
+
+    .nav-tabs-custom .nav-link .tab-text {
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .nav-tabs-wrapper {
+        margin: 0 -0.5rem;
+    }
+
+    .nav-tabs-custom {
+        padding: 0.25rem;
+    }
+
+    .nav-tabs-custom .nav-link {
+        padding: 0.5rem 0.875rem;
+    }
+}
+
+/* Improved Tab Active State */
+.nav-tabs-custom .nav-link.active {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.nav-tabs-custom .nav-link:hover:not(.active) {
+    background: rgba(37, 99, 235, 0.1);
+    color: #2563eb;
+}
+
+/* Document Preview Container */
+.preview-container {
+    position: relative;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+/* Loading State */
+.preview-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.preview-loading::after {
+    content: '';
+    width: 24px;
+    height: 24px;
+    border: 2px solid #e2e8f0;
+    border-top-color: #2563eb;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
